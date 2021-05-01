@@ -8,12 +8,16 @@ justify-content: center;
     flex-direction: column;
     width:500px;
 }
-
+header{
+    height:100px;
+}
 #question{
     display:flex;
     align-items: center;
     background:#EEE;
     height:50px;
+    margin-bottom: 5px;
+    padding:0 0 0 10px;
 }
 .ansDiv{
     display:flex;
@@ -23,7 +27,30 @@ justify-content: center;
     margin-bottom: 5px;
     padding:0 0 0 10px;
 }
+.actionBtns{
+    display: flex;
+    justify-content: space-between;
+}
+.submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    width:120px;
+    background-color: #222;
+    color:white;
 
+}
+.quit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    width:120px;
+    background-color: #222;
+    color:white;
+
+}
 
 @media(max-width:500px ){
 #question{
