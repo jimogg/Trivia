@@ -42,32 +42,35 @@ const quitBtn = document.querySelector(".quit")
 const qWrapper = document.querySelector('.qWrapper')
 const choicesDiv = document.querySelector('.choices')
 
-let selection = ""
+let selectedChoice = ""
 choicesDiv.addEventListener('click', (event) => {
 
     // console.log('You clicked me!')
     // console.log(event.target.id)
 
     // get answer key
+    // console.log(event.target.id)
+    if (event.target.id !== "") {
+        selection = event.target.id
+        selectedChoice = selection
 
-    selection = event.target.id
-    // change bg of selected div
-    // console.log(selection)
-    // selection.style.background = "green"
-    ansA.style.backgroundColor = "#ddd";
-    ansB.style.backgroundColor = "#ddd";
-    ansC.style.backgroundColor = "#ddd";
-    ansD.style.backgroundColor = "#ddd";
-    // set background of selected ans
-    document.getElementById(selection).style.backgroundColor = "green";
-
+        // change bg of selected div
+        // console.log(selection)
+        // selection.style.background = "green"
+        ansA.style.backgroundColor = "#ddd";
+        ansB.style.backgroundColor = "#ddd";
+        ansC.style.backgroundColor = "#ddd";
+        ansD.style.backgroundColor = "#ddd";
+        // set background of selected ans
+        document.getElementById(selection).style.backgroundColor = "green";
+    }
 })
 
 submitBtn.addEventListener('click', (event) => {
     // test answer if it was choiceA
-    if (selection === "choiceA") {
+    if (selectedChoice === "choiceA") {
         console.log('You are correct!')
-    } else if (selection === "") {
+    } else if (selectedChoice === "") {
         console.log('please make a selection')
     }
     else { console.log('Wrong!') }
