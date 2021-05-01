@@ -1,4 +1,3 @@
-console.log('test')
 
 //question object
 // const question = {
@@ -33,42 +32,46 @@ BASIC ENCRYPTION...
 //     ansKey: 0010
 // }
 
-let question = document.querySelector("#question")
-let ansA = document.querySelector("#choiceA")
-let ansB = document.querySelector("#choiceB")
-let ansC = document.querySelector("#choiceC")
-let ansD = document.querySelector("#choiceD")
-
-
+const question = document.querySelector("#question")
+const ansA = document.querySelector("#choiceA")
+const ansB = document.querySelector("#choiceB")
+const ansC = document.querySelector("#choiceC")
+const ansD = document.querySelector("#choiceD")
+const submitBtn = document.querySelector(".submit")
+const quitBtn = document.querySelector(".quit")
 const qWrapper = document.querySelector('.qWrapper')
 const choicesDiv = document.querySelector('.choices')
-console.log(choicesDiv)
+
+let selection = ""
 choicesDiv.addEventListener('click', (event) => {
 
-    console.log('You clicked me!')
-    console.log(event.target.id)
+    // console.log('You clicked me!')
+    // console.log(event.target.id)
 
     // get answer key
 
-    let selection = event.target.id
-    //change bg of selected div
-    console.log(selection)
+    selection = event.target.id
+    // change bg of selected div
+    // console.log(selection)
     // selection.style.background = "green"
     ansA.style.backgroundColor = "#ddd";
     ansB.style.backgroundColor = "#ddd";
     ansC.style.backgroundColor = "#ddd";
     ansD.style.backgroundColor = "#ddd";
+    // set background of selected ans
     document.getElementById(selection).style.backgroundColor = "green";
-
-    if (event.target.id === "choiceA") {
-        console.log('You are correct!')
-    }
-    else { console.log('Wrong!') }
-
-
 
 })
 
+submitBtn.addEventListener('click', (event) => {
+    // test answer if it was choiceA
+    if (selection === "choiceA") {
+        console.log('You are correct!')
+    } else if (selection === "") {
+        console.log('please make a selection')
+    }
+    else { console.log('Wrong!') }
+})
 
 
 {
