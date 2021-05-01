@@ -14,7 +14,7 @@ header{
 #question{
     display:flex;
     align-items: center;
-    background:#EEE;
+    /* background:#EEE; */
     height:50px;
     margin-bottom: 5px;
     padding:0 0 0 10px;
@@ -25,11 +25,14 @@ header{
     height: 25px;
     background-color: #ddd;
     margin-bottom: 5px;
-    padding:0 0 0 10px;
+    padding:0 0 0 15px;
+    /* border-radius: 20px; */
 }
 .actionBtns{
     display: flex;
     justify-content: space-between;
+    margin-top: 30px;
+
 }
 .submit{
     display: flex;
@@ -39,7 +42,7 @@ header{
     width:120px;
     background-color: #222;
     color:white;
-
+    border-radius: 8px;
 }
 .quit{
     display: flex;
@@ -49,6 +52,7 @@ header{
     width:120px;
     background-color: #222;
     color:white;
+    border-radius: 8px;
 
 }
 
@@ -58,7 +62,22 @@ header{
 }
 .ansDiv{
     height:60px;
+    border-radius: 20px;
+    padding:0 0 0 20px;
 }
+.submit{
+    border-radius: 12px;
+}
+.quit{
+    border-radius: 12px;
 
+}
+.actionBtns{
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 30px; */
+
+
+}
 
 }
