@@ -1,0 +1,37 @@
+#mainWrapper{
+    display:flex;
+justify-content: center;
+}
+
+.qWrapper{
+    display:flex;
+    flex-direction: column;
+    width:500px;
+}
+
+#question{
+    display:flex;
+    align-items: center;
+    background:#EEE;
+    height:50px;
+}
+.ansDiv{
+    display:flex;
+    align-items: center;
+    height: 25px;
+    background-color: #ddd;
+    margin-bottom: 5px;
+    padding:0 0 0 10px;
+}
+
+
+@media(max-width:500px ){
+#question{
+    height:80px;
+}
+.ansDiv{
+    height:60px;
+}
+
+
+}
