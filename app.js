@@ -71,6 +71,7 @@ const ansC = document.querySelector("#choiceC")
 const ansD = document.querySelector("#choiceD")
 const submitBtn = document.querySelector(".submit")
 const quitBtn = document.querySelector(".quit")
+const nextBtn = document.querySelector(".next")
 const qWrapper = document.querySelector('.qWrapper')
 const choicesDiv = document.querySelector('.choices')
 
@@ -127,17 +128,25 @@ ansD.innerText = "D) Moon people of course!"
 
 //Using the question object array
 
+let totalScore = 0 //running tally?
+
+
+
 function loadCategory(quesCatArray) {
+
+    let categoryScore = 0
     let i = 0
     let answer = ""
+
     // _________________________________________________________ LOOP START
-    // loop as long as i<questCatArray.length
-    // While(i < quesCatArray.length)... or maybe recursion
 
+    function quizQuestions() {
 
-    // base case ...  return when i = quesCatArray-1
+        i++
+        // Base case for recursion -> exit and show results
+        if (i === quesCatArray - 1) {
 
-    while (i < quesCatArray.length) {
+        }
 
         question.innerText = quesCatArray[i].question
         ansA.innerText = quesCatArray[i].choiceA
@@ -146,16 +155,16 @@ function loadCategory(quesCatArray) {
         ansD.innerText = quesCatArray[i].choiceD
 
         let key = quesCatArray[i].key       // Answer key fetched from question object
-        // Answer will be set by comparison to key
 
-        // SCORING THE SELECTION AGAINST THE ANSWER KEY
+
+        // Set answer base on key in question object
         if (key === 1000) { answer = "choiceA" }
         else if (key === 0100) { answer = "choiceB" }
         else if (key === 0010) { answer = "choiceC" }
         else if (key === 0001) { answer = "choiceD" }
 
 
-
+        // SUMBIT event listener
         submitBtn.addEventListener('click', (event) => {
 
 
@@ -165,23 +174,24 @@ function loadCategory(quesCatArray) {
                 // Maybe display correct
                 // update score
                 // enable to move to next
-                console.log('You are correct!')
-            } else if (selectedChoice === "") {
-                // DO WRONG ANSWER STUFF
-                // enable to move to next
-                console.log('please make a selection')
+
             }
-            else { console.log('Wrong!') }
+            else if (selectedChoice === "") {
+
+                // console.log('please make a selection first') //alert?
+            }
+            else {
+                // console.log('Wrong!')
+                // DO WRONG ANSWER STUFF
+                // enable to move to next}
+            }
+
         })
-        i++
+        nextBtn.addEventListener('click', (event) => {
+            quizQuestions()  //When clicked run this function again
+        })
+        // _________________________________________________________LOOP END
+        //go to results/ end page
 
     }
-    // _________________________________________________________LOOP END
-
-    //go to results/ end page
-
 }
-
-
-
-// question format
