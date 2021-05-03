@@ -55,26 +55,19 @@ choicesDiv.addEventListener('click', (event) => {
         selection = event.target.id
         selectedChoice = selection
 
-        // reset backgrounds of  multi-choice divs
-        ansA.style.backgroundColor = "#ddd";
-        ansB.style.backgroundColor = "#ddd";
-        ansC.style.backgroundColor = "#ddd";
-        ansD.style.backgroundColor = "#ddd";
+        resetMultiChoiceBg()
         // set background of selected ans
         document.getElementById(selection).style.backgroundColor = "green";  // TEST color... change it to appropriate one
     }
 })
 
-submitBtn.addEventListener('click', (event) => {
-    // test answer if it was choiceA
-    if (selectedChoice === "choiceA") {
-        console.log('You are correct!')
-    } else if (selectedChoice === "") {
-        console.log('please make a selection')
-    }
-    else { console.log('Wrong!') }
-})
-
+// reset backgrounds of  multi-choice divs
+function resetMultiChoiceBg() {
+    ansA.style.backgroundColor = "#ddd";
+    ansB.style.backgroundColor = "#ddd";
+    ansC.style.backgroundColor = "#ddd";
+    ansD.style.backgroundColor = "#ddd";
+}
 
 // ######### TOTAL SCORE ###########
 let totalScore = 0 //running tally?
@@ -87,63 +80,78 @@ function loadCategory(quesCatArray) {
     let i = 0
     let answer = ""
     quizQuestions(i)
-}
 
 
-function quizQuestions(i = 0) {
 
-    i++  // first question is at index[1] because category title is at index[0]
+    function quizQuestions(i = 0) {
+        i++
+        nextEnable = false
 
-    // Base case for recursion -> exit and show results if prev question was last
-    if (i === quesCatArray - 1) {
+
+        // Base case for recursion -> exit and show results if prev question was last
+        if (i === quesCatArray - 1) {
+            return
+        }
+
+        // load question and ans choices into HTML page
+        question.innerText = quesCatArray[i].question
+        ansA.innerText = quesCatArray[i].choiceA
+        ansB.innerText = quesCatArray[i].choiceB
+        ansC.innerText = quesCatArray[i].choiceC
+        ansD.innerText = quesCatArray[i].choiceD
+
+        // Answer key fetched from question object
+        let key = quesCatArray[i].key
+
+
+        // Set answer based on ans key in question object
+        if (key === 1000) { answer = "choiceA" }
+        else if (key === 0100) { answer = "choiceB" }
+        else if (key === 0010) { answer = "choiceC" }
+        else if (key === 0001) { answer = "choiceD" }
+
+
+        // SUMBIT event listener
+        submitBtn.addEventListener('click', (event) => {
+
+            if (selectedChoice === answer) {
+                console.log('You are correct!')
+                // DO CORRECT ANSWER STUFF
+                // Maybe display correct
+                // update score
+                // enable to move to next
+                nextEnable = true
+
+            }
+            else if (selectedChoice === "") {
+                alert('please make a selection first')
+            }
+            else {
+                console.log('Wrong!')
+
+                // DO WRONG ANSWER STUFF
+
+                nextEnable = true
+            }
+
+        })
+        nextBtn.addEventListener('click', (event) => {
+            if (nextEnable === true) {
+                console.log('Yes you clicked next.')
+
+                // i++
+                resetMultiChoiceBg()
+                quizQuestions(i)
+
+            } else { console.log('Do stuff before you can click next.') }
+        })
+
+        //_________
+
+        //_________
+
+
+        //go to results end page
 
     }
-
-    // load question and ans choices into HTML page
-    question.innerText = quesCatArray[i].question
-    ansA.innerText = quesCatArray[i].choiceA
-    ansB.innerText = quesCatArray[i].choiceB
-    ansC.innerText = quesCatArray[i].choiceC
-    ansD.innerText = quesCatArray[i].choiceD
-
-    // Answer key fetched from question object
-    let key = quesCatArray[i].key
-
-
-    // Set answer based on ans key in question object
-    if (key === 1000) { answer = "choiceA" }
-    else if (key === 0100) { answer = "choiceB" }
-    else if (key === 0010) { answer = "choiceC" }
-    else if (key === 0001) { answer = "choiceD" }
-
-
-    // SUMBIT event listener
-    submitBtn.addEventListener('click', (event) => {
-
-        if (selectedChoice === answer) {
-            // DO CORRECT ANSWER STUFF
-            // Maybe display correct
-            // update score
-            // enable to move to next
-
-        }
-        else if (selectedChoice === "") {
-
-            // console.log('please make a selection first') //alert?
-        }
-        else {
-            // console.log('Wrong!')
-            // DO WRONG ANSWER STUFF
-            // enable to move to next}
-        }
-
-    })
-    nextBtn.addEventListener('click', (event) => {
-        quizQuestions()  // When "next" is clicked, run this function again
-    })
-
-
-    //go to results end page
-
 }
-
