@@ -71,6 +71,12 @@ header{
     /* display:inline; */
 }
 
+.score{
+    padding:10px;
+    text-align: center;
+    font-size: x-large;
+}
+
 @media(max-width:500px ){
 #question{
     height:80px;
