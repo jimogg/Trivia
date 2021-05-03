@@ -32,6 +32,38 @@ BASIC ENCRYPTION...
 //     ansKey: 0010
 // }
 
+// CATEGORY SELECTION
+
+const categoriesUl = document.querySelector(".categoriesUl")
+
+categoriesUl.addEventListener("click", event => {
+
+    console.log(event.target.id) // TESTING
+    if (event.target.id === "category1") {
+        //load category1
+        loadCategory(questionsCat1)
+    }
+    else if (event.target.id === "category2") {
+        //load category2
+        loadCategory(questionsCat2)
+    }
+    else if (event.target.id === "category3") {
+        //load category3
+        loadCategory(questionsCat3)
+    }
+    else {
+        //load category4
+        loadCategory(questionsCat4)
+    }
+
+})
+const cat1 = document.getElementById("category1")
+
+
+
+
+//*************************
+
 const question = document.querySelector("#question")
 const ansA = document.querySelector("#choiceA")
 const ansB = document.querySelector("#choiceB")
@@ -94,12 +126,61 @@ ansD.innerText = "D) Moon people of course!"
 
 
 //Using the question object array
-question.innerText = quesCatArray[0].question
-ansA.innerText = quesCatArray[0].choiceA
-ansB.innerText = quesCatArray[0].choiceB
-ansC.innerText = quesCatArray[0].choiceC
-ansD.innerText = quesCatArray[0].choiceD
 
+function loadCategory(quesCatArray) {
+    let i = 0
+    let answer = ""
+    // _________________________________________________________ LOOP START
+    // loop as long as i<questCatArray.length
+    // While(i < quesCatArray.length)... or maybe recursion
+
+
+    // base case ...  return when i = quesCatArray-1
+
+    while (i < quesCatArray.length) {
+
+        question.innerText = quesCatArray[i].question
+        ansA.innerText = quesCatArray[i].choiceA
+        ansB.innerText = quesCatArray[i].choiceB
+        ansC.innerText = quesCatArray[i].choiceC
+        ansD.innerText = quesCatArray[i].choiceD
+
+        let key = quesCatArray[i].key       // Answer key fetched from question object
+        // Answer will be set by comparison to key
+
+        // SCORING THE SELECTION AGAINST THE ANSWER KEY
+        if (key === 1000) { answer = "choiceA" }
+        else if (key === 0100) { answer = "choiceB" }
+        else if (key === 0010) { answer = "choiceC" }
+        else if (key === 0001) { answer = "choiceD" }
+
+
+
+        submitBtn.addEventListener('click', (event) => {
+
+
+            // what to do when correct answer selected
+            if (selectedChoice === answer) {
+                // DO CORRECT ANSWER STUFF
+                // Maybe display correct
+                // update score
+                // enable to move to next
+                console.log('You are correct!')
+            } else if (selectedChoice === "") {
+                // DO WRONG ANSWER STUFF
+                // enable to move to next
+                console.log('please make a selection')
+            }
+            else { console.log('Wrong!') }
+        })
+        i++
+
+    }
+    // _________________________________________________________LOOP END
+
+    //go to results/ end page
+
+}
 
 
 
