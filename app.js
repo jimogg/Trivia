@@ -190,6 +190,7 @@ function loadCategory(quesCatArray) {
         nextBtn.addEventListener('click', (event) => {
             quizQuestions()  //When clicked run this function again
         })
+
         // _________________________________________________________LOOP END
         //go to results/ end page
 
