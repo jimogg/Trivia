@@ -1,60 +1,28 @@
 
-//question object
-// const question = {
-//question
-//answer1
-//answer2
-//answer3
-//answer4
-//ans-key
-
-// }
-//select an array of questions to load
-
-//
-/*
-on submit, check returned value against answer key
-display result and move to next question
-
-way to hide answer key?
-BASIC ENCRYPTION...
-
-
-*/
-
-
-// const q1 = {
-//     question: "Which of the following is not part of the contiguous USA?",
-//     ansA: "Wyoming",
-//     ansB: "Vermont",
-//     ansC: "Alaska",
-//     ansD: "Texas",
-//     ansKey: 0010
-// }
-
 // CATEGORY SELECTION
 
+// Set links to question category arrays
+const questionsCat1 = quesCatArray
+const questionsCat2 = []
+const questionsCat3 = []
+const questionsCat4 = []
+
+// Grab UL holding the category selections
 const categoriesUl = document.querySelector(".categoriesUl")
 
 categoriesUl.addEventListener("click", event => {
 
     console.log(event.target.id) // TESTING
     if (event.target.id === "category1") {
-        //load category1
         loadCategory(questionsCat1)
     }
     else if (event.target.id === "category2") {
-        //load category2
         loadCategory(questionsCat2)
     }
     else if (event.target.id === "category3") {
-        //load category3
         loadCategory(questionsCat3)
     }
-    else {
-        //load category4
-        loadCategory(questionsCat4)
-    }
+    else { loadCategory(questionsCat4) }
 
 })
 const cat1 = document.getElementById("category1")
@@ -82,20 +50,18 @@ choicesDiv.addEventListener('click', (event) => {
     // console.log(event.target.id)
 
     // get answer key
-    // console.log(event.target.id)
+
     if (event.target.id !== "") {
         selection = event.target.id
         selectedChoice = selection
 
-        // change bg of selected div
-        // console.log(selection)
-        // selection.style.background = "green"
+        // reset backgrounds of  multi-choice divs
         ansA.style.backgroundColor = "#ddd";
         ansB.style.backgroundColor = "#ddd";
         ansC.style.backgroundColor = "#ddd";
         ansD.style.backgroundColor = "#ddd";
         // set background of selected ans
-        document.getElementById(selection).style.backgroundColor = "green";
+        document.getElementById(selection).style.backgroundColor = "green";  // TEST color... change it to appropriate one
     }
 })
 
@@ -110,24 +76,7 @@ submitBtn.addEventListener('click', (event) => {
 })
 
 
-{
-    // div.style.background - color: 'green'
-}
-
-
-
-// console.log(question)
-/*
-question.innerText = "Q: Who was the first man to dance on the moon?"
-ansA.innerText = "A) Neil Armstrong"
-ansB.innerText = "B) Buzz Aldrin"
-ansC.innerText = "C) Yuri Gagarin"
-ansD.innerText = "D) Moon people of course!"
-*/
-
-
-//Using the question object array
-
+// ######### TOTAL SCORE ###########
 let totalScore = 0 //running tally?
 
 
@@ -137,62 +86,64 @@ function loadCategory(quesCatArray) {
     let categoryScore = 0
     let i = 0
     let answer = ""
-
-    // _________________________________________________________ LOOP START
-
-    function quizQuestions() {
-
-        i++
-        // Base case for recursion -> exit and show results
-        if (i === quesCatArray - 1) {
-
-        }
-
-        question.innerText = quesCatArray[i].question
-        ansA.innerText = quesCatArray[i].choiceA
-        ansB.innerText = quesCatArray[i].choiceB
-        ansC.innerText = quesCatArray[i].choiceC
-        ansD.innerText = quesCatArray[i].choiceD
-
-        let key = quesCatArray[i].key       // Answer key fetched from question object
+    quizQuestions(i)
+}
 
 
-        // Set answer base on key in question object
-        if (key === 1000) { answer = "choiceA" }
-        else if (key === 0100) { answer = "choiceB" }
-        else if (key === 0010) { answer = "choiceC" }
-        else if (key === 0001) { answer = "choiceD" }
+function quizQuestions(i = 0) {
 
+    i++  // first question is at index[1] because category title is at index[0]
 
-        // SUMBIT event listener
-        submitBtn.addEventListener('click', (event) => {
-
-
-            // what to do when correct answer selected
-            if (selectedChoice === answer) {
-                // DO CORRECT ANSWER STUFF
-                // Maybe display correct
-                // update score
-                // enable to move to next
-
-            }
-            else if (selectedChoice === "") {
-
-                // console.log('please make a selection first') //alert?
-            }
-            else {
-                // console.log('Wrong!')
-                // DO WRONG ANSWER STUFF
-                // enable to move to next}
-            }
-
-        })
-        nextBtn.addEventListener('click', (event) => {
-            quizQuestions()  //When clicked run this function again
-        })
-
-        // _________________________________________________________LOOP END
-        //go to results/ end page
+    // Base case for recursion -> exit and show results if prev question was last
+    if (i === quesCatArray - 1) {
 
     }
+
+    // load question and ans choices into HTML page
+    question.innerText = quesCatArray[i].question
+    ansA.innerText = quesCatArray[i].choiceA
+    ansB.innerText = quesCatArray[i].choiceB
+    ansC.innerText = quesCatArray[i].choiceC
+    ansD.innerText = quesCatArray[i].choiceD
+
+    // Answer key fetched from question object
+    let key = quesCatArray[i].key
+
+
+    // Set answer based on ans key in question object
+    if (key === 1000) { answer = "choiceA" }
+    else if (key === 0100) { answer = "choiceB" }
+    else if (key === 0010) { answer = "choiceC" }
+    else if (key === 0001) { answer = "choiceD" }
+
+
+    // SUMBIT event listener
+    submitBtn.addEventListener('click', (event) => {
+
+        if (selectedChoice === answer) {
+            // DO CORRECT ANSWER STUFF
+            // Maybe display correct
+            // update score
+            // enable to move to next
+
+        }
+        else if (selectedChoice === "") {
+
+            // console.log('please make a selection first') //alert?
+        }
+        else {
+            // console.log('Wrong!')
+            // DO WRONG ANSWER STUFF
+            // enable to move to next}
+        }
+
+    })
+    nextBtn.addEventListener('click', (event) => {
+        quizQuestions()  // When "next" is clicked, run this function again
+    })
+
+
+    //go to results end page
+
 }
+
