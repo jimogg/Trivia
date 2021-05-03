@@ -43,6 +43,9 @@ const nextBtn = document.querySelector(".next")
 const qWrapper = document.querySelector('.qWrapper')
 const choicesDiv = document.querySelector('.choices')
 
+const scoreDiv = document.querySelector(".score")
+
+
 let selectedChoice = ""
 choicesDiv.addEventListener('click', (event) => {
 
@@ -52,7 +55,7 @@ choicesDiv.addEventListener('click', (event) => {
     // get answer key
 
     if (event.target.id !== "") {
-        selection = event.target.id
+        const selection = event.target.id
         selectedChoice = selection
 
         resetMultiChoiceBg()
@@ -77,16 +80,16 @@ let totalScore = 0 //running tally?
 function loadCategory(quesCatArray) {
 
     let categoryScore = 0
-    let i = 0
+    let i = 1
     let answer = ""
     quizQuestions(i)
 
 
 
-    function quizQuestions(i = 0) {
-        i++
+    function quizQuestions(i) {
+        // i++
         nextEnable = false
-
+        submitEnable = true
 
         // Base case for recursion -> exit and show results if prev question was last
         if (i === quesCatArray - 1) {
@@ -113,38 +116,63 @@ function loadCategory(quesCatArray) {
 
         // SUMBIT event listener
         submitBtn.addEventListener('click', (event) => {
+            if (submitEnable === true) {
+                if (selectedChoice === answer) {
+                    console.log('You are correct!')
 
-            if (selectedChoice === answer) {
-                console.log('You are correct!')
-                // DO CORRECT ANSWER STUFF
-                // Maybe display correct
-                // update score
-                // enable to move to next
-                nextEnable = true
+                    categoryScore++
+                    scoreDiv.innerText = categoryScore
+                    // enable to move to next
+                    nextEnable = true
+                    submitEnable = false
+                    selectedChoice = ""
 
+                }
+                else if (selectedChoice === "") {
+                    alert('please make a selection first.')
+                }
+                else {
+                    console.log('Wrong!')
+                    console.log(selectedChoice)
+                    // DO WRONG ANSWER STUFF
+
+                    nextEnable = true
+                    submitEnable = false
+                    selectedChoice = ""
+                }
             }
-            else if (selectedChoice === "") {
-                alert('please make a selection first')
-            }
-            else {
-                console.log('Wrong!')
-
-                // DO WRONG ANSWER STUFF
-
-                nextEnable = true
-            }
-
         })
-        nextBtn.addEventListener('click', (event) => {
-            if (nextEnable === true) {
-                console.log('Yes you clicked next.')
+        // nextBtn.addEventListener('click', (event) => {
+        //     if (nextEnable === true) {
+        //         console.log('Yes you clicked next.')
 
-                // i++
-                resetMultiChoiceBg()
-                quizQuestions(i)
+        //         i++
+        //         resetMultiChoiceBg()
+        //         // submitEnable = true
+        //         quizQuestions(i)
 
-            } else { console.log('Do stuff before you can click next.') }
-        })
+        //     } else { console.log('Do stuff before you can click next.') }
+        // })
+
+
+        nextBtn.addEventListener('click', nextQuestion)
+        function nextQuestion() {
+
+            if (i < quesCatArray.length - 1) {
+
+                if (nextEnable === true) {
+                    console.log('Yes you clicked next.')
+
+                    i++
+                    console.log(i, quesCatArray.length)
+                    resetMultiChoiceBg()
+                    quizQuestions(i)
+
+                } else { console.log('Do stuff before you can click next.') }
+
+            }
+            else { console.log('Going to results page!') }
+        }
 
         //_________
 
