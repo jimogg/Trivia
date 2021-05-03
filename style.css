@@ -55,8 +55,20 @@ header{
     border-radius: 8px;
 
 }
+
+.next{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:40px;
+    width:120px;
+    background-color: #222;
+    color:white;
+    border-radius: 8px;
+
+}
 .categories{
-    display:inline;
+    /* display:inline; */
 }
 
 @media(max-width:500px ){
