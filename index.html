@@ -11,21 +11,36 @@
 
 <body>
     <div id=mainWrapper>
+        <!-- intro page -->
+        <div class="startPage">Trivia Categories
+            <ul class="categoriesUl">
+                <li class="categories" id="category1">US History</li>
+                <li class="categories" id="category2">Modern Europe</li>
+                <li class="categories" id="category3">World War II</li>
+                <li class="categories" id="category4">Harry Potter!</li>
+            </ul>
+
+            <button type="submit" id="btnBeginQuiz">BEGIN</button>
+
+        </div>
+        <!-- end intro page -->
 
         <div class='qWrapper'>
             <header>
 
                 <!-- header will contain score information and game title/category -->
-                Categories
-                <ul class="categoriesUl">
+                Trivia Category
+                <p id="selectedCategory"></p>
+                <!-- <ul class="categoriesUl">
                     <li class="categories" id="category1">US History</li>
-                    <li class="categories" id="category2">Europe</li>
-                    <li class="categories" id="category3">Africa</li>
-                    <li class="categories" id="category4">Harry Potter</li>
-                </ul>
+                    <li class="categories" id="category2">Modern Europe</li>
+                    <li class="categories" id="category3">World War II</li>
+                    <li class="categories" id="category4">Harry Potter!</li>
+                </ul> -->
 
             </header>
             <div class="quizMain">
+                <h4 id="questionHeader"></h4>
                 <div id='question'></div>
 
 
@@ -49,6 +64,7 @@
                 <div class="score">0</div>
             </div>
             <div class="resultsDiv">
+                <p id="scoreP"></p>
                 <button type="submit">RETURN</button>
 
             </div>

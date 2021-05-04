@@ -2,27 +2,63 @@
 // CATEGORY SELECTION
 
 // Set links to question category arrays
-const questionsCat1 = quesCatArray
-const questionsCat2 = []
-const questionsCat3 = []
-const questionsCat4 = []
+const questionsCat1 = quesCatArray0
+const questionsCat2 = quesCatArray1
+const questionsCat3 = quesCatArray2
+const questionsCat4 = quesCatArray3
+const liSelectBgColor = "#ccc"
+const liUnSelectBgColor = "white"
 
 // Grab UL holding the category selections
 const categoriesUl = document.querySelector(".categoriesUl")
+const category1 = document.querySelector('#category1')
+const category2 = document.querySelector('#category2')
+const category3 = document.querySelector('#category3')
+const category4 = document.querySelector('#category4')
+
 
 categoriesUl.addEventListener("click", event => {
 
-    console.log(event.target.id) // TESTING
+
     if (event.target.id === "category1") {
         loadCategory(questionsCat1)
+
+        // const category1 = document.querySelector('#category1')
+        // let origTxt = category1.innerText
+        // category1.innerHTML = `${origTxt} &#10003`
+        category1.style.backgroundColor = liSelectBgColor
+        category2.style.backgroundColor = liUnSelectBgColor
+        category3.style.backgroundColor = liUnSelectBgColor
+        category4.style.backgroundColor = liUnSelectBgColor
     }
     else if (event.target.id === "category2") {
         loadCategory(questionsCat2)
+        // let origTxt = category2.innerText
+        // category2.innerHTML = `${origTxt} &#10003`
+        category1.style.backgroundColor = liUnSelectBgColor
+        category2.style.backgroundColor = liSelectBgColor
+        category3.style.backgroundColor = liUnSelectBgColor
+        category4.style.backgroundColor = liUnSelectBgColor
     }
     else if (event.target.id === "category3") {
         loadCategory(questionsCat3)
+        // let origTxt = category3.innerText
+        // category3.innerHTML = `${origTxt} &#10003`
+
+        category1.style.backgroundColor = liUnSelectBgColor
+        category2.style.backgroundColor = liUnSelectBgColor
+        category3.style.backgroundColor = liSelectBgColor
+        category4.style.backgroundColor = liUnSelectBgColor
     }
-    else { loadCategory(questionsCat4) }
+    else {
+        loadCategory(questionsCat4)
+        // let origTxt = category4.innerText
+        // category4.innerHTML = `${origTxt} &#10003`
+        category1.style.backgroundColor = liUnSelectBgColor
+        category2.style.backgroundColor = liUnSelectBgColor
+        category3.style.backgroundColor = liUnSelectBgColor
+        category4.style.backgroundColor = liSelectBgColor
+    }
 
 })
 const cat1 = document.getElementById("category1")
@@ -42,8 +78,13 @@ const quitBtn = document.querySelector(".quit")
 const nextBtn = document.querySelector(".next")
 const qWrapper = document.querySelector('.qWrapper')
 const choicesDiv = document.querySelector('.choices')
-
+const startPage = document.querySelector('.startPage')
 const scoreDiv = document.querySelector(".score")
+const questionHeader = document.querySelector("#questionHeader")
+const selectedCategory = document.querySelector("#selectedCategory")
+const resultsDiv = document.querySelector(".resultsDiv")
+
+const btnBeginQuiz = document.querySelector("#btnBeginQuiz")
 
 
 let selectedChoice = ""
@@ -96,7 +137,9 @@ function loadCategory(quesCatArray) {
             return
         }
 
-        // load question and ans choices into HTML page
+        // load questions and answer choices into HTML page
+        selectedCategory.innerText = `CATEGORY: ${quesCatArray[0].categoryName}`
+        questionHeader.innerHTML = `&nbsp;&nbsp;Question ${i} of ${quesCatArray.length - 1}`
         question.innerText = quesCatArray[i].question
         ansA.innerText = quesCatArray[i].choiceA
         ansB.innerText = quesCatArray[i].choiceB
@@ -107,7 +150,7 @@ function loadCategory(quesCatArray) {
         let key = quesCatArray[i].key
 
 
-        // Set answer based on ans key in question object
+        // Decode answer key
         if (key === 1000) { answer = "choiceA" }
         else if (key === 0100) { answer = "choiceB" }
         else if (key === 0010) { answer = "choiceC" }
@@ -121,6 +164,7 @@ function loadCategory(quesCatArray) {
                     console.log('You are correct!')
 
                     categoryScore++
+                    totalScore++
                     scoreDiv.innerText = categoryScore
                     // enable to move to next
                     nextEnable = true
@@ -135,7 +179,9 @@ function loadCategory(quesCatArray) {
                     console.log('Wrong!')
                     console.log(selectedChoice)
                     // DO WRONG ANSWER STUFF
-
+                    // show correct answer
+                    document.getElementById(answer).style.backgroundColor = "red";  // TEST color... change it to appropriate one
+                    console.log(answer)
                     nextEnable = true
                     submitEnable = false
                     selectedChoice = ""
@@ -168,18 +214,68 @@ function loadCategory(quesCatArray) {
                     resetMultiChoiceBg()
                     quizQuestions(i)
 
-                } else { console.log('Do stuff before you can click next.') }
+                } else {
+                    // qWrapper.style.display = "none"
+
+                    console.log('Do stuff before you can click next.')
+                }
 
             }
-            else { console.log('Going to results page!') }
+            else {
+                qWrapper.style.display = "none"
+                console.log('Going to results page!')
+                resultsPage()
+            }
         }
 
-        //_________
-
-        //_________
 
 
         //go to results end page
 
+
+        function resultsPage() {
+
+            // qWrapper.innerHTML = "" //Hide it instead
+            // const scoreP = document.createElement("p")
+            const scoreP = document.querySelector("#scoreP")
+            scoreP.innerHTML = `Your score this category: ${categoryScore} <br/> Your overall score: ${totalScore}`
+            // qWrapper.appendChild(scoreP)
+
+            // const goBackButton = document.createElement("button")
+            // goBackButton.innerText = "DONE"
+            // qWrapper.appendChild(goBackButton)
+        }
+
+
+
     }
 }
+function firstPage() {
+
+    // hide qWrapper contents
+    // display 'select category'
+    // when selected, lock out categories and unhide qWrapper contents
+
+}
+
+btnBeginQuiz.addEventListener('click', (event) => {
+    startPage.style.display = "none"
+    qWrapper.style.display = "block"
+
+})
+
+quitBtn.addEventListener("click", quitQuiz)
+function quitQuiz() {
+    //alert and then quit when confirmed
+    let conf = confirm("Are you sure?")
+    if (conf == true) {
+        startPage.style.display = "block"
+        qWrapper.style.display = "none"
+
+    }
+
+}
+
+// when btnBeginQuiz clicked, hide firstpage, unhide qWrapper
+
+// when quiz ends hide qWrapper, unhide results
