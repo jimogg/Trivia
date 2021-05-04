@@ -1,31 +1,56 @@
+body{
+    /* font-family: 'Noto Sans JP', sans-serif; */
+    /* font-family: 'Open Sans Condensed', sans-serif; */
+}
+
 #mainWrapper{
     display:flex;
 justify-content: center;
 }
 
+.categoriesUl{
+list-style-type: none ;
+}
+
+
+li{
+ padding:4px;
+}
 .qWrapper{
     display:flex;
     flex-direction: column;
     width:500px;
+    display:none;
 }
 header{
     height:100px;
+    /* display:none; */
+
 }
+
+.startPage{
+    width:500px;
+}
+
+
 #question{
     display:flex;
     align-items: center;
     /* background:#EEE; */
     height:50px;
-    margin-bottom: 5px;
-    padding:0 0 0 10px;
+    margin-bottom: 10px;
+    padding:0 10px 0 10px;
 }
 .ansDiv{
     display:flex;
     align-items: center;
-    height: 25px;
+    height: 35px;
     background-color: #ddd;
-    margin-bottom: 5px;
-    padding:0 0 0 15px;
+    margin-bottom: 10px;
+    padding:0 15px 0 15px;
+    border-radius: 5px;
+
+
     /* border-radius: 20px; */
 }
 .actionBtns{
@@ -34,7 +59,7 @@ header{
     margin-top: 30px;
 
 }
-.submit{
+/* .submit{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +79,7 @@ header{
     color:white;
     border-radius: 8px;
 
-}
+} 
 
 .next{
     display: flex;
@@ -66,7 +91,7 @@ header{
     color:white;
     border-radius: 8px;
 
-}
+} */
 .categories{
     /* display:inline; */
 }
@@ -77,28 +102,61 @@ header{
     font-size: x-large;
 }
 
+.resultsDiv{
+    display:none;
+    padding:15px;
+}
+
+.first-page{
+    padding:15px;
+}
+
+button{
+    height:35px;
+    width:110px;
+    font-size: 14px;
+    border: none;
+    background-color: black;
+    color: #ccc;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* -------------------------------------------*/
 @media(max-width:500px ){
 #question{
     height:80px;
 }
 .ansDiv{
-    height:60px;
-    border-radius: 20px;
-    padding:0 0 0 20px;
-}
+    height:50px;
+    border-radius: 40px;
+    padding:0 20px 0 20px;
+    margin-bottom: 5px;
+/* }
 .submit{
     border-radius: 12px;
 }
 .quit{
-    border-radius: 12px;
+    border-radius: 12px; */
 
 }
 .actionBtns{
     display: flex;
     justify-content: space-between;
+    padding: 0 2px 0 2px;
     /* margin-top: 30px; */
 
 
+}
+button{
+    height:40px;
+    width:115px;
+    font-size: medium;
+    border: none;
+    background-color: black;
+    color: #ccc;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 }
