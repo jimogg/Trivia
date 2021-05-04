@@ -22,6 +22,8 @@ categoriesUl.addEventListener("click", event => {
 
     if (event.target.id === "category1") {
         loadCategory(questionsCat1)
+        //reset this score
+        categoryScore = 0
 
         // const category1 = document.querySelector('#category1')
         // let origTxt = category1.innerText
@@ -83,7 +85,7 @@ const scoreDiv = document.querySelector(".score")
 const questionHeader = document.querySelector("#questionHeader")
 const selectedCategory = document.querySelector("#selectedCategory")
 const resultsDiv = document.querySelector(".resultsDiv")
-
+const btnReturn = document.querySelector("#btnReturn")
 const btnBeginQuiz = document.querySelector("#btnBeginQuiz")
 
 
@@ -178,7 +180,6 @@ function loadCategory(quesCatArray) {
                 else {
                     console.log('Wrong!')
                     console.log(selectedChoice)
-                    // DO WRONG ANSWER STUFF
                     // show correct answer
                     document.getElementById(answer).style.backgroundColor = "red";  // TEST color... change it to appropriate one
                     console.log(answer)
@@ -224,6 +225,7 @@ function loadCategory(quesCatArray) {
             else {
                 qWrapper.style.display = "none"
                 console.log('Going to results page!')
+
                 resultsPage()
             }
         }
@@ -234,7 +236,7 @@ function loadCategory(quesCatArray) {
 
 
         function resultsPage() {
-
+            resultsDiv.style.display = "block"
             // qWrapper.innerHTML = "" //Hide it instead
             // const scoreP = document.createElement("p")
             const scoreP = document.querySelector("#scoreP")
@@ -252,6 +254,9 @@ function loadCategory(quesCatArray) {
 }
 function firstPage() {
 
+    qWrapper.style.display = "none"
+    resultsDiv.style.display = "none"
+    startPage.style.display = "block"
     // hide qWrapper contents
     // display 'select category'
     // when selected, lock out categories and unhide qWrapper contents
@@ -261,6 +266,7 @@ function firstPage() {
 btnBeginQuiz.addEventListener('click', (event) => {
     startPage.style.display = "none"
     qWrapper.style.display = "block"
+    //load afresh the selected category
 
 })
 
@@ -269,12 +275,16 @@ function quitQuiz() {
     //alert and then quit when confirmed
     let conf = confirm("Are you sure?")
     if (conf == true) {
-        startPage.style.display = "block"
-        qWrapper.style.display = "none"
+        // startPage.style.display = "block"
+        // qWrapper.style.display = "none"
+        firstPage()
 
     }
 
 }
+
+btnReturn.addEventListener("click", firstPage)
+
 
 // when btnBeginQuiz clicked, hide firstpage, unhide qWrapper
 
