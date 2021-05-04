@@ -11,6 +11,7 @@
 
 <body>
     <div id=mainWrapper>
+
         <div class='qWrapper'>
             <header>
 
@@ -24,19 +25,31 @@
                 </ul>
 
             </header>
-            <div id='question'></div>
+            <div class="quizMain">
+                <div id='question'></div>
 
 
-            <div class=choices>
-                <div class=ansDiv id=choiceA></div>
-                <div class=ansDiv id=choiceB></div>
-                <div class=ansDiv id=choiceC></div>
-                <div class=ansDiv id=choiceD></div>
+                <div class=choices>
+                    <div class=ansDiv id=choiceA></div>
+                    <div class=ansDiv id=choiceB></div>
+                    <div class=ansDiv id=choiceC></div>
+                    <div class=ansDiv id=choiceD></div>
+                </div>
+                <div class=actionBtns>
+                    <button class="quit" type="submit">QUIT</button>
+                    <button class="submit" type="submit">SUBMIT</button>
+                    <button class="next" type="submit">NEXT</button>
+                    <!-- <div class="quit">QUIT</div>
+
+
+                    <div class="submit">SUBMIT</div>
+                    <div class="next">NEXT</div> -->
+
+                </div>
+                <div class="score">0</div>
             </div>
-            <div class=actionBtns>
-                <div class="quit">QUIT</div>
-                <div class="submit">SUBMIT</div>
-                <div class="next">NEXT</div>
+            <div class="resultsDiv">
+                <button type="submit">RETURN</button>
 
             </div>
         </div>
