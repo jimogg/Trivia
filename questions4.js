@@ -60,7 +60,7 @@ quesCatArray0 = [
     },
     {
         question: "Who shot Abraham Lincoln?",
-        choiceA: "This is chocie A",
+        choiceA: "Aaron Burr",
         choiceB: "Robert E. Lee",
         choiceC: "Robert Ford",
         choiceD: "John Wilkes Booth",
@@ -70,7 +70,7 @@ quesCatArray0 = [
         question: "Where was Lincoln when he was shot?",
         choiceA: "The Capitol",
         choiceB: "The White House",
-        choiceC: "Ford's Theatre in Washington,",
+        choiceC: "Ford's Theatre in Washington",
         choiceD: "Giving the Emancipation Proclamation",
         key: 0010
     },
