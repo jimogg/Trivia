@@ -5,14 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivia</title>
+    <title>Smartie Trivia</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div id=mainWrapper>
+
         <!-- intro page -->
-        <div class="startPage">Trivia Categories
+        <div class="startPage">
+            <div id="title">Smartie TRIVIA</div>
+            <div>
+                <p>Select a Trivia Category to begin!</p>
+            </div>
             <ul class="categoriesUl">
                 <li class="categories" id="category1">US History</li>
                 <li class="categories" id="category2">Modern Europe</li>
@@ -24,23 +31,13 @@
 
         </div>
         <!-- end intro page -->
-
         <div class='qWrapper'>
             <header>
-
-                <!-- header will contain score information and game title/category -->
-                Trivia Category
+                <p id=titleSm>&nbsp;SmartieTRIVIA -> Category</p>
                 <p id="selectedCategory"></p>
-                <!-- <ul class="categoriesUl">
-                    <li class="categories" id="category1">US History</li>
-                    <li class="categories" id="category2">Modern Europe</li>
-                    <li class="categories" id="category3">World War II</li>
-                    <li class="categories" id="category4">Harry Potter!</li>
-                </ul> -->
-
             </header>
             <div class="quizMain">
-                <h4 id="questionHeader"></h4>
+                <h3 id="questionHeader"></h3>
                 <div id='question'></div>
 
 
@@ -62,17 +59,21 @@
 
                 </div>
                 <div class="score">0</div>
+                <div id="errPrompt"></div>
             </div>
 
         </div>
         <div class="resultsDiv">
-            <p id="scoreP">This score</p>
+            <p id="scoreP">...</p>
             <button type="submit" id="btnReturn">RETURN</button>
-
         </div>
     </div>
+    <!-- link question files -->
+    <script src="questions1.js"></script>
+    <script src="questions2.js"></script>
+    <script src="questions3.js"></script>
+    <script src="questions4.js"></script>
 
-    <script src="questions.js"></script>
     <script src="app.js"></script>
 
 </body>

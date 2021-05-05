@@ -1,5 +1,6 @@
 
-// CATEGORY SELECTION
+// TRIVIA QUIZ APP
+// Author: Jim N. Ogana
 
 // Set links to question category arrays
 const questionsCat1 = quesCatArray0
@@ -8,6 +9,9 @@ const questionsCat3 = quesCatArray2
 const questionsCat4 = quesCatArray3
 const liSelectBgColor = "#ccc"
 const liUnSelectBgColor = "white"
+const selectionBgColor = "cornflowerblue"
+const correctAnsWas = "#ff0040"
+const catInvalidBgColor = "gray"
 
 // Grab UL holding the category selections
 const categoriesUl = document.querySelector(".categoriesUl")
@@ -16,18 +20,25 @@ const category2 = document.querySelector('#category2')
 const category3 = document.querySelector('#category3')
 const category4 = document.querySelector('#category4')
 
+const scoreArray = [0, 0, 0, 0]
+const categoryPlayed = [0, 0, 0, 0]
+let scoreCategoryId = 0
 
+// Multi-Choice selection section
 categoriesUl.addEventListener("click", event => {
-
+    scoreDiv.innerText = 0
+    category1.style.backgroundColor = liUnSelectBgColor
+    category2.style.backgroundColor = liUnSelectBgColor
+    category3.style.backgroundColor = liUnSelectBgColor
+    category4.style.backgroundColor = liUnSelectBgColor
 
     if (event.target.id === "category1") {
         loadCategory(questionsCat1)
-        //reset this score
-        categoryScore = 0
+        submitEnable = true
 
-        // const category1 = document.querySelector('#category1')
-        // let origTxt = category1.innerText
-        // category1.innerHTML = `${origTxt} &#10003`
+        scoreCategoryId = 0
+        categoryPlayed[0] = 1
+
         category1.style.backgroundColor = liSelectBgColor
         category2.style.backgroundColor = liUnSelectBgColor
         category3.style.backgroundColor = liUnSelectBgColor
@@ -35,8 +46,10 @@ categoriesUl.addEventListener("click", event => {
     }
     else if (event.target.id === "category2") {
         loadCategory(questionsCat2)
-        // let origTxt = category2.innerText
-        // category2.innerHTML = `${origTxt} &#10003`
+
+        scoreCategoryId = 1
+        categoryPlayed[1] = 1
+
         category1.style.backgroundColor = liUnSelectBgColor
         category2.style.backgroundColor = liSelectBgColor
         category3.style.backgroundColor = liUnSelectBgColor
@@ -44,8 +57,9 @@ categoriesUl.addEventListener("click", event => {
     }
     else if (event.target.id === "category3") {
         loadCategory(questionsCat3)
-        // let origTxt = category3.innerText
-        // category3.innerHTML = `${origTxt} &#10003`
+
+        scoreCategoryId = 2
+        categoryPlayed[2] = 1
 
         category1.style.backgroundColor = liUnSelectBgColor
         category2.style.backgroundColor = liUnSelectBgColor
@@ -54,8 +68,10 @@ categoriesUl.addEventListener("click", event => {
     }
     else {
         loadCategory(questionsCat4)
-        // let origTxt = category4.innerText
-        // category4.innerHTML = `${origTxt} &#10003`
+
+        scoreCategoryId = 3
+        categoryPlayed[3] = 1
+
         category1.style.backgroundColor = liUnSelectBgColor
         category2.style.backgroundColor = liUnSelectBgColor
         category3.style.backgroundColor = liUnSelectBgColor
@@ -63,13 +79,10 @@ categoriesUl.addEventListener("click", event => {
     }
 
 })
+
+
+// Grab the HTML elements
 const cat1 = document.getElementById("category1")
-
-
-
-
-//*************************
-
 const question = document.querySelector("#question")
 const ansA = document.querySelector("#choiceA")
 const ansB = document.querySelector("#choiceB")
@@ -77,7 +90,7 @@ const ansC = document.querySelector("#choiceC")
 const ansD = document.querySelector("#choiceD")
 const submitBtn = document.querySelector(".submit")
 const quitBtn = document.querySelector(".quit")
-const nextBtn = document.querySelector(".next")
+const btnNext = document.querySelector(".next")
 const qWrapper = document.querySelector('.qWrapper')
 const choicesDiv = document.querySelector('.choices')
 const startPage = document.querySelector('.startPage')
@@ -87,27 +100,22 @@ const selectedCategory = document.querySelector("#selectedCategory")
 const resultsDiv = document.querySelector(".resultsDiv")
 const btnReturn = document.querySelector("#btnReturn")
 const btnBeginQuiz = document.querySelector("#btnBeginQuiz")
+const errPrompt = document.querySelector("#errPrompt")
 
 
 let selectedChoice = ""
+
 choicesDiv.addEventListener('click', (event) => {
-
-    // console.log('You clicked me!')
-    // console.log(event.target.id)
-
-    // get answer key
-
     if (event.target.id !== "") {
         const selection = event.target.id
         selectedChoice = selection
-
         resetMultiChoiceBg()
-        // set background of selected ans
-        document.getElementById(selection).style.backgroundColor = "green";  // TEST color... change it to appropriate one
+        // set background of selected answer choice
+        document.getElementById(selection).style.backgroundColor = selectionBgColor;
     }
 })
 
-// reset backgrounds of  multi-choice divs
+// Resets backgrounds of multi-choice divs
 function resetMultiChoiceBg() {
     ansA.style.backgroundColor = "#ddd";
     ansB.style.backgroundColor = "#ddd";
@@ -115,34 +123,26 @@ function resetMultiChoiceBg() {
     ansD.style.backgroundColor = "#ddd";
 }
 
-// ######### TOTAL SCORE ###########
-let totalScore = 0 //running tally?
-
-
-
+// Function to load category of questions
 function loadCategory(quesCatArray) {
 
-    let categoryScore = 0
     let i = 1
     let answer = ""
+    let nextCount = 0
     quizQuestions(i)
 
-
-
     function quizQuestions(i) {
-        // i++
+
         nextEnable = false
         submitEnable = true
 
-        // Base case for recursion -> exit and show results if prev question was last
-        if (i === quesCatArray - 1) {
-            return
-        }
-
-        // load questions and answer choices into HTML page
-        selectedCategory.innerText = `CATEGORY: ${quesCatArray[0].categoryName}`
+        // LOAD QUESTIONS & CHOICES INTO HTML
+        selectedCategory.innerText = `${quesCatArray[0].categoryName}`
+        // displays current category
         questionHeader.innerHTML = `&nbsp;&nbsp;Question ${i} of ${quesCatArray.length - 1}`
+        // displays question x of total
         question.innerText = quesCatArray[i].question
+        // loads answer choices into page
         ansA.innerText = quesCatArray[i].choiceA
         ansB.innerText = quesCatArray[i].choiceB
         ansC.innerText = quesCatArray[i].choiceC
@@ -151,7 +151,6 @@ function loadCategory(quesCatArray) {
         // Answer key fetched from question object
         let key = quesCatArray[i].key
 
-
         // Decode answer key
         if (key === 1000) { answer = "choiceA" }
         else if (key === 0100) { answer = "choiceB" }
@@ -159,29 +158,23 @@ function loadCategory(quesCatArray) {
         else if (key === 0001) { answer = "choiceD" }
 
 
-        // SUMBIT event listener
+        // "SUMBIT" button functionality
         submitBtn.addEventListener('click', (event) => {
             if (submitEnable === true) {
                 if (selectedChoice === answer) {
-                    console.log('You are correct!')
-
-                    categoryScore++
-                    totalScore++
-                    scoreDiv.innerText = categoryScore
-                    // enable to move to next
+                    scoreArray[scoreCategoryId]++
+                    scoreDiv.innerText = scoreArray[scoreCategoryId]
+                    // enable to move to next question
                     nextEnable = true
                     submitEnable = false
                     selectedChoice = ""
-
                 }
                 else if (selectedChoice === "") {
                     alert('please make a selection first.')
                 }
                 else {
-                    console.log('Wrong!')
-                    console.log(selectedChoice)
                     // show correct answer
-                    document.getElementById(answer).style.backgroundColor = "red";  // TEST color... change it to appropriate one
+                    document.getElementById(answer).style.backgroundColor = correctAnsWas;
                     console.log(answer)
                     nextEnable = true
                     submitEnable = false
@@ -189,103 +182,63 @@ function loadCategory(quesCatArray) {
                 }
             }
         })
-        // nextBtn.addEventListener('click', (event) => {
-        //     if (nextEnable === true) {
-        //         console.log('Yes you clicked next.')
 
-        //         i++
-        //         resetMultiChoiceBg()
-        //         // submitEnable = true
-        //         quizQuestions(i)
-
-        //     } else { console.log('Do stuff before you can click next.') }
-        // })
-
-
-        nextBtn.addEventListener('click', nextQuestion)
+        // "NEXT" button functionality
+        btnNext.addEventListener('click', nextQuestion)
         function nextQuestion() {
-
-            if (i < quesCatArray.length - 1) {
+            if (i < quesCatArray.length - 1 && nextCount != quesCatArray.length) {
 
                 if (nextEnable === true) {
-                    console.log('Yes you clicked next.')
-
                     i++
-                    console.log(i, quesCatArray.length)
+                    nextCount++
                     resetMultiChoiceBg()
                     quizQuestions(i)
-
-                } else {
-                    // qWrapper.style.display = "none"
-
-                    console.log('Do stuff before you can click next.')
                 }
-
             }
             else {
                 qWrapper.style.display = "none"
-                console.log('Going to results page!')
-
+                quizQuestions(1)
+                resetMultiChoiceBg()
                 resultsPage()
+                submitEnable = false
+                nextCount = 0
             }
         }
-
-
-
-        //go to results end page
-
-
-        function resultsPage() {
-            resultsDiv.style.display = "block"
-            // qWrapper.innerHTML = "" //Hide it instead
-            // const scoreP = document.createElement("p")
-            const scoreP = document.querySelector("#scoreP")
-            scoreP.innerHTML = `Your score this category: ${categoryScore} <br/> Your overall score: ${totalScore}`
-            // qWrapper.appendChild(scoreP)
-
-            // const goBackButton = document.createElement("button")
-            // goBackButton.innerText = "DONE"
-            // qWrapper.appendChild(goBackButton)
-        }
-
-
-
     }
 }
-function firstPage() {
 
-    qWrapper.style.display = "none"
-    resultsDiv.style.display = "none"
-    startPage.style.display = "block"
-    // hide qWrapper contents
-    // display 'select category'
-    // when selected, lock out categories and unhide qWrapper contents
-
+// go to results page
+function resultsPage() {
+    resultsDiv.style.display = "block"
+    const scoreP = document.querySelector("#scoreP")
+    scoreP.innerHTML = `Your score this category: ${scoreArray[scoreCategoryId]}`
 }
 
+// Reloads the first page
+function firstPage() {
+    location.reload()
+}
+
+// "BEGIN" button functionality
 btnBeginQuiz.addEventListener('click', (event) => {
+    scoreArray[scoreCategoryId] = 0
     startPage.style.display = "none"
     qWrapper.style.display = "block"
-    //load afresh the selected category
-
 })
 
+// "QUIT" button functionality
 quitBtn.addEventListener("click", quitQuiz)
 function quitQuiz() {
-    //alert and then quit when confirmed
     let conf = confirm("Are you sure?")
     if (conf == true) {
-        // startPage.style.display = "block"
-        // qWrapper.style.display = "none"
+        selectedChoice = ""
+        categoryScore = 0
+        scoreArray[scoreCategoryId] = 0  //reset score at quit ...
+        resetMultiChoiceBg()
         firstPage()
-
     }
 
 }
 
+// "RETURN" button functionality
 btnReturn.addEventListener("click", firstPage)
-
-
-// when btnBeginQuiz clicked, hide firstpage, unhide qWrapper
-
-// when quiz ends hide qWrapper, unhide results
