@@ -66,4 +66,20 @@ quesCatArray2 = [
         choiceD: "Sub machine gun",
         key: 1000
     },
+    {
+        question: "What was the name of the first ever atomic bomb used in war?",
+        choiceA: "War Buster",
+        choiceB: "Little Boy",
+        choiceC: "Fat Man",
+        choiceD: "Chubby Cheeks",
+        key: 0100
+    },
+    {
+        question: "What was the name of the bomber that delivered the first atomic bomb over Japan?",
+        choiceA: "Red Baron",
+        choiceB: "Charlie Chaplin",
+        choiceC: "Amelia Earhart",
+        choiceD: "Enola Gay",
+        key: 0001
+    },
 ]
