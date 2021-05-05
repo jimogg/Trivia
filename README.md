@@ -25,8 +25,6 @@ Fork, clone and launch.
 ![Screen Shot 2021-05-05 at 11 21 19 AM](https://user-images.githubusercontent.com/81941464/117166244-30c64f80-ad94-11eb-9026-ce551af73696.png)
 
 
-![Uploading Screen Shot 2021-05-05 at 11.21.52 AM.png…]()
-
 ### Final Product
 ![Screen Shot 2021-05-05 at 11 16 12 AM](https://user-images.githubusercontent.com/81941464/117165292-5bfc6f00-ad93-11eb-8aca-83bb93712080.png)
 ![Screen Shot 2021-05-05 at 11 01 57 AM](https://user-images.githubusercontent.com/81941464/117165116-353e3880-ad93-11eb-863a-783bcc208439.png)
