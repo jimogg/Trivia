@@ -216,9 +216,9 @@ function loadCategory(quesCatArray) {
         //     return
         // }
 
-        // load questions and answer choices into HTML page
-        selectedCategory.innerText = `CATEGORY: ${quesCatArray[0].categoryName}`
-        questionHeader.innerHTML = `&nbsp;&nbsp;Question ${i} of ${quesCatArray.length - 1}`
+        // LOAD QUESTIONS & CHOICES INTO HTML
+        selectedCategory.innerText = `${quesCatArray[0].categoryName}`    // displays current category
+        questionHeader.innerHTML = `&nbsp;&nbsp;Question ${i} of ${quesCatArray.length - 1}`    // displays question x of total
         question.innerText = quesCatArray[i].question
         ansA.innerText = quesCatArray[i].choiceA
         ansB.innerText = quesCatArray[i].choiceB
