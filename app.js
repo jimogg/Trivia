@@ -175,7 +175,7 @@ function loadCategory(quesCatArray) {
                 else {
                     // show correct answer
                     document.getElementById(answer).style.backgroundColor = correctAnsWas;
-                    console.log(answer)
+                  
                     nextEnable = true
                     submitEnable = false
                     selectedChoice = ""
