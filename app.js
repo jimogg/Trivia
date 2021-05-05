@@ -22,7 +22,7 @@ const questionsCat3 = quesCatArray2
 const questionsCat4 = quesCatArray3
 const liSelectBgColor = "#ccc"
 const liUnSelectBgColor = "white"
-const selectionBgColor = "#00eaff"//"#0091ff"//"#4fcaff""#00b3ff"
+const selectionBgColor = "cornflowerblue"//"#00eaff"//"#0091ff"//"#4fcaff""#00b3ff"
 const correctAnsWas = "#ff0040"//"#ff3d6e" //red
 const catInvalidBgColor = "gray"
 
