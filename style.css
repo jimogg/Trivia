@@ -1,6 +1,7 @@
 body{
     /* font-family: 'Noto Sans JP', sans-serif; */
     /* font-family: 'Open Sans Condensed', sans-serif; */
+    background-color: "white";
 }
 
 #mainWrapper{
@@ -29,9 +30,16 @@ header{
 }
 
 .startPage{
-    width:500px;
+    width:250px;
+    display: flex;
+    flex-direction: column;
+ 
+ 
 }
 
+#btnBeginQuiz{
+    align-self: center;
+}
 
 #question{
     display:flex;
@@ -103,8 +111,15 @@ header{
 }
 
 .resultsDiv{
-    display:none;
+    display:flex;
+    flex-direction: column;
+    align-content: center;
     padding:15px;
+    display:none;
+}
+
+#btnReturn{
+
 }
 
 .first-page{
@@ -116,9 +131,9 @@ button{
     width:110px;
     font-size: 14px;
     border: none;
-    background-color: black;
+    background-color: rgb(36, 36, 36);
     color: #ccc;
-    border-radius: 10px;
+    border-radius: 25px;
     padding: 10px;
 }
 
@@ -153,7 +168,7 @@ button{
     width:115px;
     font-size: medium;
     border: none;
-    background-color: black;
+    background-color: rgb(36, 36, 36);
     color: #ccc;
     border-radius: 20px;
     padding: 10px;
