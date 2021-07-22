@@ -51,7 +51,7 @@ quesCatArray1 = [
         key: 0001
     },
     {
-        question: "The German manufacturer BMW ariginally made what product?",
+        question: "The German manufacturer BMW originally made what product?",
         choiceA: "Kitchenware",
         choiceB: "Aircraft engines",
         choiceC: "Boats",
