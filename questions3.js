@@ -71,7 +71,7 @@ quesCatArray3 = [
         choiceA: "Shade in the summer",
         choiceB: "Herbology specimen",
         choiceC: "To conceal a secret passage to the Shreaking Shack",
-        choiceD: "To keep wondering young wizards out of the Dark Forrest",
+        choiceD: "To keep wandering young wizards out of the Dark Forrest",
         key: 0010
     },
     {
