@@ -1,30 +1,54 @@
 /**
  * TRIVIA QUIZ APP
  * Author: Jim N. Ogana
- * Vanilla Javascript/HTML/CSS
+ * Vanilla Javascript,HTML,CSS
  * May 2021
+ * 
  */
 
-// Link to question category arrays
-// imported as scripts in html file
+// Links to question arrays  
+// imported as scripts in index.html
 const questionsCat1 = usHistory
 const questionsCat2 = modernEurope
 const questionsCat3 = worldWar2
 const questionsCat4 = harryPotter
 
 // UI interactive colors
-const liSelectBgColor = "#ccc"
-const liUnSelectBgColor = "white"
+const liSelectBgColor = "#ddd"
+const liUnSelectBgColor = ""
 const selectionBgColor = "cornflowerblue"
 const correctAnsWasColor = "#ff0040"
 const catInvalidBgColor = "gray"
+const multichoiceBgColor = "#ddd"
 
-// Grab UL holding the category selections
+// Grab HTML elements
 const categoriesUl = document.querySelector(".categoriesUl")
 const category1 = document.querySelector('#category1')
 const category2 = document.querySelector('#category2')
 const category3 = document.querySelector('#category3')
 const category4 = document.querySelector('#category4')
+const question = document.querySelector("#question")
+const ansA = document.querySelector("#choiceA")
+const ansB = document.querySelector("#choiceB")
+const ansC = document.querySelector("#choiceC")
+const ansD = document.querySelector("#choiceD")
+const submitBtn = document.querySelector(".submit")
+const quitBtn = document.querySelector(".quit")
+const btnNext = document.querySelector(".next")
+const quizWrapper = document.querySelector('.quizWrapper')
+const choicesDiv = document.querySelector('.choices')
+const startPage = document.querySelector('.startPage')
+const scoreDiv = document.querySelector(".score")
+const questionHeader = document.querySelector("#questionHeader")
+const selectedCategory = document.querySelector("#selectedCategory")
+const resultsDiv = document.querySelector(".resultsDiv")
+const btnReturn = document.querySelector("#btnReturn")
+const btnBeginQuiz = document.querySelector("#btnBeginQuiz")
+const errPrompt = document.querySelector("#errPrompt")
+const beginError = document.querySelector("#begin-error")
+const noAnsError = document.querySelector('#err-select-ans')
+
+let selectedChoice = ""
 
 const scoreArray = [0, 0, 0, 0]
 const categoryPlayed = [0, 0, 0, 0]
@@ -51,7 +75,7 @@ categoriesUl.addEventListener("click", event => {
 
         scoreCategoryId = 0
         categoryPlayed[0] = 1
-
+        // change bg of selected item
         category1.style.backgroundColor = liSelectBgColor
         category2.style.backgroundColor = liUnSelectBgColor
         category3.style.backgroundColor = liUnSelectBgColor
@@ -93,39 +117,13 @@ categoriesUl.addEventListener("click", event => {
 
 })
 
-
-// Grab the HTML elements
-const cat1 = document.getElementById("category1")
-const question = document.querySelector("#question")
-const ansA = document.querySelector("#choiceA")
-const ansB = document.querySelector("#choiceB")
-const ansC = document.querySelector("#choiceC")
-const ansD = document.querySelector("#choiceD")
-const submitBtn = document.querySelector(".submit")
-const quitBtn = document.querySelector(".quit")
-const btnNext = document.querySelector(".next")
-const quizWrapper = document.querySelector('.quizWrapper')
-const choicesDiv = document.querySelector('.choices')
-const startPage = document.querySelector('.startPage')
-const scoreDiv = document.querySelector(".score")
-const questionHeader = document.querySelector("#questionHeader")
-const selectedCategory = document.querySelector("#selectedCategory")
-const resultsDiv = document.querySelector(".resultsDiv")
-const btnReturn = document.querySelector("#btnReturn")
-const btnBeginQuiz = document.querySelector("#btnBeginQuiz")
-const errPrompt = document.querySelector("#errPrompt")
-const beginError = document.querySelector("#begin-error")
-const noAnsError = document.querySelector('#err-select-ans')
-
-
-let selectedChoice = ""
-
+// Multi-choice selection user interactivity
 choicesDiv.addEventListener('click', (event) => {
     if (event.target.id !== "") {
-        // get selected choice from target.id
+        // get user-selected choice from target.id
         const selection = event.target.id
         selectedChoice = selection
-        // clear no-selection error
+        // clear no-selection-made error
         noAnsError.innerHTML = ""
         // set background of selected answer choice
         resetMultiChoiceBg()
@@ -133,17 +131,16 @@ choicesDiv.addEventListener('click', (event) => {
     }
 })
 
-// Resets backgrounds of multi-choice divs
+// Reset backgrounds of multi-choice divs
 function resetMultiChoiceBg() {
-    ansA.style.backgroundColor = "#ddd";
-    ansB.style.backgroundColor = "#ddd";
-    ansC.style.backgroundColor = "#ddd";
-    ansD.style.backgroundColor = "#ddd";
+    ansA.style.backgroundColor = multichoiceBgColor;
+    ansB.style.backgroundColor = multichoiceBgColor;
+    ansC.style.backgroundColor = multichoiceBgColor;
+    ansD.style.backgroundColor = multichoiceBgColor;
 }
 
 // Function to load category of questions
 function loadCategory(quesCatArray) {
-
     let i = 1
     let answer = ""
     let nextCount = 0
@@ -155,12 +152,14 @@ function loadCategory(quesCatArray) {
         submitEnable = true
 
         // LOAD QUESTIONS & CHOICES INTO HTML
+
+        // display current category
         selectedCategory.innerText = `${quesCatArray[0].categoryName}`
-        // displays current category
+        // display question x of total
         questionHeader.innerHTML = `&nbsp;&nbsp;Question ${i} of ${quesCatArray.length - 1}`
-        // displays question x of total
+        // load question
         question.innerText = quesCatArray[i].question
-        // loads answer choices into page
+        // load answer choices into page
         ansA.innerText = quesCatArray[i].choiceA
         ansB.innerText = quesCatArray[i].choiceB
         ansC.innerText = quesCatArray[i].choiceC
@@ -188,13 +187,11 @@ function loadCategory(quesCatArray) {
                     selectedChoice = ""
                 }
                 else if (selectedChoice === "") {
-                    // alert('please make a selection first.')
                     noAnsError.innerHTML = "Please Make A Selection First"
                 }
                 else {
-                    // show correct answer
+                    // display correct answer
                     document.getElementById(answer).style.backgroundColor = correctAnsWasColor;
-
                     nextEnable = true
                     submitEnable = false
                     selectedChoice = ""
@@ -226,14 +223,14 @@ function loadCategory(quesCatArray) {
     }
 }
 
-// go to results page
+// Go to results page
 function resultsPage() {
     resultsDiv.style.display = "block"
     const pointsTally = document.querySelector("#pointsTally")
     pointsTally.innerHTML = `Your score this category: ${scoreArray[scoreCategoryId]}`
 }
 
-// Reloads the first page
+// Reload the first page
 function firstPage() {
     location.reload()
 }
@@ -241,14 +238,16 @@ function firstPage() {
 // "BEGIN" button functionality
 btnBeginQuiz.addEventListener('click', (event) => {
     if (beginEnable === true) {
-        scoreArray[scoreCategoryId] = 0    // reset score of selected category
+        scoreArray[scoreCategoryId] = 0    // reset score
         startPage.style.display = "none"
         quizWrapper.style.display = "block"
     }
     else {
-        beginError.innerHTML = "<span>Please Select A Category First ...</span>"
+        // display error message
+        beginError.innerHTML = "<span>Please Select A Category First</span>"
     }
 })
+
 // "QUIT" button functionality
 quitBtn.addEventListener("click", quitQuiz)
 function quitQuiz() {
@@ -256,7 +255,7 @@ function quitQuiz() {
     if (conf == true) {
         selectedChoice = ""
         categoryScore = 0
-        scoreArray[scoreCategoryId] = 0  //reset score at quit ...
+        scoreArray[scoreCategoryId] = 0  //reset score
         resetMultiChoiceBg()
         firstPage()
     }
