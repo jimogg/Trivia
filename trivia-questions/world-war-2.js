@@ -43,7 +43,7 @@ const worldWar2 = [
         key: 0001
     },
     {
-        question: "The phrase “the whole nine yards” referred to the length of the machine gun ammunition belt of which of these aircraft?",
+        question: "The phrase 'the whole nine yards' referred to the length of the machine gun ammunition belt of which of these aircraft?",
         choiceA: "P51 Mustang",
         choiceB: "Messerschmitt Bf 109",
         choiceC: "Japanese Zero",
@@ -59,7 +59,7 @@ const worldWar2 = [
         key: 0010
     },
     {
-        question: "What type of weapon was the panzerfaust",
+        question: "What type of weapon was the panzerfaust?",
         choiceA: "Anti-tank weapon",
         choiceB: "Landmine",
         choiceC: "Anti-personnel grenade",
@@ -75,7 +75,7 @@ const worldWar2 = [
         key: 0100
     },
     {
-        question: "What was the name of the bomber that delivered the first atomic bomb over Japan?",
+        question: "What was the name of the plane that delivered the first atomic bomb over Japan?",
         choiceA: "Red Baron",
         choiceB: "Charlie Chaplin",
         choiceC: "Amelia Earhart",
