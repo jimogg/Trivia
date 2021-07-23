@@ -14,12 +14,12 @@ const questionsCat3 = worldWar2
 const questionsCat4 = harryPotter
 
 // UI interactive colors
-const liSelectBgColor = "#ddd"
+const liSelectBgColor = "rgb(226, 226, 226)"
 const liUnSelectBgColor = ""
 const selectionBgColor = "cornflowerblue"
 const correctAnsWasColor = "#ff0040"
 const catInvalidBgColor = "gray"
-const multichoiceBgColor = "#ddd"
+const multichoiceBgColor = "rgb(226, 226, 226)"
 
 // Grab HTML elements
 const categoriesUl = document.querySelector(".categoriesUl")
