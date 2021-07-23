@@ -1,4 +1,4 @@
-quesCatArray0 = [
+const usHistory = [
     {
         categoryName: "U.S. History"
     },

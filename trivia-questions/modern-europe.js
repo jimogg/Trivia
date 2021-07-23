@@ -1,4 +1,4 @@
-quesCatArray1 = [
+const modernEurope = [
     {
         categoryName: "Modern Europe"
     },

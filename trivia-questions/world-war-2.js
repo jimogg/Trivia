@@ -1,4 +1,4 @@
-quesCatArray2 = [
+const worldWar2 = [
     {
         categoryName: "World War II"
     },

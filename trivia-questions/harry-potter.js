@@ -1,4 +1,4 @@
-quesCatArray3 = [
+const harryPotter = [
     {
         categoryName: "Harry Potter!"
     },
