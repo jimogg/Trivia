@@ -59,7 +59,7 @@ quesCatArray3 = [
         key: 0001
     },
     {
-        question: "What is the place “'...where everything is hidden. If you have to ask, you will never know. If you know, you need only ask..”?",
+        question: "What is the place '...where everything is hidden. If you have to ask, you will never know. If you know, you need only ask...'?",
         choiceA: "Slytherin common room",
         choiceB: "Room of Requirements",
         choiceC: "The Great Hall",
