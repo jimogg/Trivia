@@ -7,7 +7,7 @@
  */
 
 // Links to question arrays  
-// imported as scripts in index.html
+// -imported as scripts in index.html-
 const questionsCat1 = usHistory
 const questionsCat2 = modernEurope
 const questionsCat3 = worldWar2
@@ -117,13 +117,13 @@ categoriesUl.addEventListener("click", event => {
 
 })
 
-// Multi-choice selection user interactivity
+// Multi-choice section user interactivity
 choicesDiv.addEventListener('click', (event) => {
     if (event.target.id !== "") {
         // get user-selected choice from target.id
         const selection = event.target.id
         selectedChoice = selection
-        // clear no-selection-made error
+        // clear no-selection-made error message
         noAnsError.innerHTML = ""
         // set background of selected answer choice
         resetMultiChoiceBg()
@@ -146,12 +146,12 @@ function loadCategory(quesCatArray) {
     let nextCount = 0
     quizQuestions(i)
 
+    // LOAD QUESTION & CHOICES INTO HTML/Decode answer key
     function quizQuestions(i) {
 
         nextEnable = false
         submitEnable = true
 
-        // LOAD QUESTIONS & CHOICES INTO HTML
 
         // display current category
         selectedCategory.innerText = `${quesCatArray[0].categoryName}`
