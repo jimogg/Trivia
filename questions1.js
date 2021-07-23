@@ -59,7 +59,7 @@ quesCatArray1 = [
         key: 0100
     },
     {
-        question: "What is the westernmost european country.",
+        question: "What is the westernmost European country.",
         choiceA: "Portugal",
         choiceB: "France",
         choiceC: "Great Britain",
