@@ -56,7 +56,7 @@ let scoreCategoryId = 0
 let submitEnable = false
 let beginEnable = false
 
-// Multi-Choice selection section
+// Category selection functionality
 categoriesUl.addEventListener("click", event => {
     // reset score, enable begin button, clear error message 
     scoreDiv.innerText = 0
@@ -152,7 +152,6 @@ function loadCategory(quesCatArray) {
         nextEnable = false
         submitEnable = true
 
-
         // display current category
         selectedCategory.innerText = `${quesCatArray[0].categoryName}`
         // display question x of total
@@ -223,7 +222,7 @@ function loadCategory(quesCatArray) {
     }
 }
 
-// Go to results page
+// Display results page
 function resultsPage() {
     resultsDiv.style.display = "block"
     const pointsTally = document.querySelector("#pointsTally")
@@ -243,8 +242,8 @@ btnBeginQuiz.addEventListener('click', (event) => {
         quizWrapper.style.display = "block"
     }
     else {
-        // display error message
-        beginError.innerHTML = "<span>Please Select A Category First</span>"
+        // display error message if no category selected
+        beginError.innerHTML = "<span>Please Select a Category First</span>"
     }
 })
 
