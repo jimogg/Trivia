@@ -35,7 +35,7 @@ quesCatArray1 = [
         key: 0010
     },
     {
-        question: "Which of these is an eastern european country.",
+        question: "Which of these is an Eastern European country.",
         choiceA: "Belgium",
         choiceB: "Lithuania",
         choiceC: "Austria",
