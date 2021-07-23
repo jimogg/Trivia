@@ -28,9 +28,6 @@ li{
     width:500px;
     display:none;
 }
-header{
-    height:100px;
-}
 
 .startPage{
     display: flex;
@@ -47,14 +44,15 @@ header{
     height:50px;
     margin-bottom: 10px;
     padding:0 10px 0 10px;
+    font-size: 18px;
 }
 .ansDiv{
     display:flex;
     align-items: center;
-    height: 35px;
+    height: 30px;
     background-color: #ddd;
-    margin-bottom: 10px;
-    padding:0 15px 0 15px;
+    margin-bottom: 5px;
+    padding:0 15px;
     border-radius: 5px;
 
 }
@@ -146,9 +144,9 @@ button:hover{
     margin:10px 0 0 0;
 }
 .ansDiv{
-    height:50px;
+    height:45px;
     border-radius: 40px;
-    padding:0 20px 0 20px;
+    padding:0 20px;
     margin-bottom: 5px;
 }
 .actionBtns{
