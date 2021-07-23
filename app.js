@@ -1,16 +1,22 @@
+/**
+ * TRIVIA QUIZ APP
+ * Author: Jim N. Ogana
+ * Vanilla Javascript/HTML/CSS
+ * May 2021
+ */
 
-// TRIVIA QUIZ APP
-// Author: Jim N. Ogana
+// Link to question category arrays
+// imported as scripts in html file
+const questionsCat1 = usHistory
+const questionsCat2 = modernEurope
+const questionsCat3 = worldWar2
+const questionsCat4 = harryPotter
 
-// Set links to question category arrays
-const questionsCat1 = quesCatArray0
-const questionsCat2 = quesCatArray1
-const questionsCat3 = quesCatArray2
-const questionsCat4 = quesCatArray3
+// UI interactive colors
 const liSelectBgColor = "#ccc"
 const liUnSelectBgColor = "white"
 const selectionBgColor = "cornflowerblue"
-const correctAnsWas = "#ff0040"
+const correctAnsWasColor = "#ff0040"
 const catInvalidBgColor = "gray"
 
 // Grab UL holding the category selections
@@ -23,10 +29,17 @@ const category4 = document.querySelector('#category4')
 const scoreArray = [0, 0, 0, 0]
 const categoryPlayed = [0, 0, 0, 0]
 let scoreCategoryId = 0
+let submitEnable = false
+let beginEnable = false
 
 // Multi-Choice selection section
 categoriesUl.addEventListener("click", event => {
+    // reset score, enable begin button, clear error message 
     scoreDiv.innerText = 0
+    beginEnable = true
+    beginError.innerHTML = ""
+
+    // reset multi-choice bg colors
     category1.style.backgroundColor = liUnSelectBgColor
     category2.style.backgroundColor = liUnSelectBgColor
     category3.style.backgroundColor = liUnSelectBgColor
@@ -101,16 +114,21 @@ const resultsDiv = document.querySelector(".resultsDiv")
 const btnReturn = document.querySelector("#btnReturn")
 const btnBeginQuiz = document.querySelector("#btnBeginQuiz")
 const errPrompt = document.querySelector("#errPrompt")
+const beginError = document.querySelector("#begin-error")
+const noAnsError = document.querySelector('#err-select-ans')
 
 
 let selectedChoice = ""
 
 choicesDiv.addEventListener('click', (event) => {
     if (event.target.id !== "") {
+        // get selected choice from target.id
         const selection = event.target.id
         selectedChoice = selection
-        resetMultiChoiceBg()
+        // clear no-selection error
+        noAnsError.innerHTML = ""
         // set background of selected answer choice
+        resetMultiChoiceBg()
         document.getElementById(selection).style.backgroundColor = selectionBgColor;
     }
 })
@@ -170,11 +188,12 @@ function loadCategory(quesCatArray) {
                     selectedChoice = ""
                 }
                 else if (selectedChoice === "") {
-                    alert('please make a selection first.')
+                    // alert('please make a selection first.')
+                    noAnsError.innerHTML = "Please Make A Selection First"
                 }
                 else {
                     // show correct answer
-                    document.getElementById(answer).style.backgroundColor = correctAnsWas;
+                    document.getElementById(answer).style.backgroundColor = correctAnsWasColor;
 
                     nextEnable = true
                     submitEnable = false
@@ -221,11 +240,15 @@ function firstPage() {
 
 // "BEGIN" button functionality
 btnBeginQuiz.addEventListener('click', (event) => {
-    scoreArray[scoreCategoryId] = 0
-    startPage.style.display = "none"
-    quizWrapper.style.display = "block"
+    if (beginEnable === true) {
+        scoreArray[scoreCategoryId] = 0    // reset score of selected category
+        startPage.style.display = "none"
+        quizWrapper.style.display = "block"
+    }
+    else {
+        beginError.innerHTML = "<span>Please Select A Category First ...</span>"
+    }
 })
-
 // "QUIT" button functionality
 quitBtn.addEventListener("click", quitQuiz)
 function quitQuiz() {

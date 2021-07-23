@@ -1,29 +1,28 @@
 body{
     font-family: 'Barlow Condensed', sans-serif;
     color:rgb(34, 34, 34);
-    font-size: 1.05em;
 }
 
 
 #mainWrapper{
     display:flex;
-justify-content: center;
+    justify-content: center;
 }
 
 .categoriesUl{
-list-style-type:square;
-font-size: x-large;
+    list-style-type:square;
+    font-size: x-large;
 }
 
 #selectedCategory{
-font-size: x-large;
-padding:5px;
+    font-size: x-large;
+    padding:5px;
 
 }
 li{
- padding:4px;
+    padding:4px;
 }
-.qWrapper{
+.quizWrapper{
     display:flex;
     flex-direction: column;
     width:500px;
@@ -34,7 +33,6 @@ header{
 }
 
 .startPage{
-    /* width:250px; */
     display: flex;
     flex-direction: column;
 }
@@ -67,7 +65,7 @@ header{
 }
 
 .score{
-    padding:10px;
+    padding:0px 10px;
     text-align: center;
     font-size: xx-large;
 }
@@ -92,7 +90,6 @@ header{
     border-radius: 50px;
     width:450px;
     font-size:17px;
-    /* height:40px; */
 }
 #title{
     font-size:50px;
@@ -101,9 +98,14 @@ header{
 }
 
 #titleSm{
-color:cornflowerblue;
-/* font-size: 20px; */
-margin-bottom: 0px;
+    color:cornflowerblue;
+    margin-bottom: 0px;
+}
+
+.error-message{
+    text-align: center; 
+    margin-top: 4px;
+    color:#ff0040;
 }
 
 button{
