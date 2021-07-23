@@ -28,9 +28,10 @@
             </ul>
 
             <button type="submit" id="btnBeginQuiz">BEGIN</button>
-
+            <div class="error-message" id="begin-error"></div>
         </div>
         <!-- end intro page -->
+
         <div class='quizWrapper'>
             <header>
                 <p id=titleSm>&nbsp;SmartieTRIVIA -> Category</p>
@@ -58,8 +59,8 @@
                     <div class="next">NEXT</div> -->
 
                 </div>
+                <div class="error-message" id="err-select-ans"></div>
                 <div class="score">0</div>
-                <div id="errPrompt"></div>
             </div>
 
         </div>
@@ -68,11 +69,12 @@
             <button type="submit" id="btnReturn">RETURN</button>
         </div>
     </div>
+
     <!-- link question files -->
-    <script src="questions1.js"></script>
-    <script src="questions2.js"></script>
-    <script src="questions3.js"></script>
-    <script src="questions4.js"></script>
+    <script src="./trivia-questions/us-history.js"></script>
+    <script src="./trivia-questions/modern-europe.js"></script>
+    <script src="./trivia-questions/world-war-2.js"></script>
+    <script src="./trivia-questions/harry-potter.js"></script>
 
     <script src="app.js"></script>
 
