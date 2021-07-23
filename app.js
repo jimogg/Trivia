@@ -91,7 +91,7 @@ const ansD = document.querySelector("#choiceD")
 const submitBtn = document.querySelector(".submit")
 const quitBtn = document.querySelector(".quit")
 const btnNext = document.querySelector(".next")
-const qWrapper = document.querySelector('.qWrapper')
+const quizWrapper = document.querySelector('.quizWrapper')
 const choicesDiv = document.querySelector('.choices')
 const startPage = document.querySelector('.startPage')
 const scoreDiv = document.querySelector(".score")
@@ -175,7 +175,7 @@ function loadCategory(quesCatArray) {
                 else {
                     // show correct answer
                     document.getElementById(answer).style.backgroundColor = correctAnsWas;
-                  
+
                     nextEnable = true
                     submitEnable = false
                     selectedChoice = ""
@@ -196,7 +196,7 @@ function loadCategory(quesCatArray) {
                 }
             }
             else {
-                qWrapper.style.display = "none"
+                quizWrapper.style.display = "none"
                 quizQuestions(1)
                 resetMultiChoiceBg()
                 resultsPage()
@@ -210,8 +210,8 @@ function loadCategory(quesCatArray) {
 // go to results page
 function resultsPage() {
     resultsDiv.style.display = "block"
-    const scoreP = document.querySelector("#scoreP")
-    scoreP.innerHTML = `Your score this category: ${scoreArray[scoreCategoryId]}`
+    const pointsTally = document.querySelector("#pointsTally")
+    pointsTally.innerHTML = `Your score this category: ${scoreArray[scoreCategoryId]}`
 }
 
 // Reloads the first page
@@ -223,7 +223,7 @@ function firstPage() {
 btnBeginQuiz.addEventListener('click', (event) => {
     scoreArray[scoreCategoryId] = 0
     startPage.style.display = "none"
-    qWrapper.style.display = "block"
+    quizWrapper.style.display = "block"
 })
 
 // "QUIT" button functionality
